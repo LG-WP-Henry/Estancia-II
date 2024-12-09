@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Editar Paciente</title>
-    <link rel="stylesheet" href="../../Estilos/StylesForAddPAc.css">
+    <link rel="stylesheet" href="../../Vista/Estilos/StylesForAddPAc.css">
 </head>
 <body>
     <h2>Editar Paciente</h2>
@@ -20,7 +20,7 @@
         $row = mysqli_fetch_assoc($resultado);
     ?>
     
-    <form method="post" action="../../Modelo/GestionPacientes/actPaciente.php? idPaciente=<?php echo $id; ?>" class="table table-hover">
+    <form method="post" action="../../Modelo/GestionPacientes/actPaciente.php? idPaciente=<?php echo $id; ?>" class="form">
         <label>Nombre:</label>
         <input type="text" name="nombre" value="<?php echo $row['Nombre']; ?>" required><br><br>
 

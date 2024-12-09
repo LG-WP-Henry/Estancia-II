@@ -16,7 +16,7 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'Psicólogo') {
 <body>
     <h2>Registrar Nuevo Paciente</h2>
 <a href="consultaPacientes.php"></a>
-    <form method="post" action="../../Modelo/GestionPacientes/crearPaciente.php" class="form">
+    <form method="post" action="./../../Modelo/GestionPacientes/crearPaciente.php" class="form">
         <label>Nombre:</label>
         <input type="text" name="nombre" required><br><br>
 

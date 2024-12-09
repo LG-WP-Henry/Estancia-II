@@ -16,7 +16,7 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'Psicólogo') {
 <body>
     <h2>Registrar Nuevo Psicologo</h2>
     <!-- Formulario con clases para aplicar los estilos -->
-    <form method="post" action="../Modelo/GestionPsicologo/crearPsicologo.php" class="form">
+    <form method="post" action="../Modelo/GestionPacientes/crearPsicologo.php" class="form">
         <label>Cedula:</label>
         <input type="text" name="cedula" required><br><br>
 
