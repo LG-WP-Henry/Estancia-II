@@ -14,42 +14,74 @@ $result = mysqli_query($conn, $sql);
 $paciente = mysqli_fetch_assoc($result);
 $idPaciente = $paciente['id_usuario'];
 
-$citasSql = "SELECT * FROM citas WHERE CedulaCita = '$idPaciente'";
+$citasSql = "SELECT *FROM citas WHERE CedulaCita = '$idPaciente'";
 $citasResult = mysqli_query($conn, $citasSql);
 
-$sqlnombre = "SELECT nombre FROM Paciente WHERE idPaciente = '$idPaciente';"; 
+$sqlnombre = "SELECT nombre from Paciente where idPaciente = '$idPaciente';"; 
 $result2 = mysqli_query($conn, $sqlnombre);
 $paciente2 = mysqli_fetch_assoc($result2);
 $nombrePaciente = $paciente2['nombre'];
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
-<link rel="stylesheet" href="Vista/Estilos/stylesprueba.css">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paciente</title>
+    <link rel="stylesheet" href="Vista/Estilos/stylesPac.css">
     
 </head>
+
 <body>
-    <header>
-        <h1>Bienvenido, <?php echo htmlspecialchars($nombrePaciente); ?> ¿Cómo estás hoy?</h1>
-    </header>
-    <main>
-        <section>
-            <h2>Descubre los consejos de los especialistas para combatir la ansiedad</h2>
-            <p>La ansiedad es un trastorno emocional que afecta a un gran número de personas en la actualidad, manifestándose de diversas formas y con diferentes intensidades. Afortunadamente, existen estrategias y consejos que los especialistas en la materia recomiendan para combatirla efectivamente. A continuación, te presentamos algunas recomendaciones fundamentales:</p>
-            <ul>
-                <li><strong>Ejercicio regular:</strong> La actividad física tiene un impacto positivo en la reducción de la ansiedad, ya que libera endorfinas que ayudan a mejorar el estado de ánimo y a reducir el estrés.</li>
-                <li><strong>Técnicas de relajación:</strong> Prácticas como la meditación, la respiración profunda, el yoga o la visualización son eficaces para calmar la mente y el cuerpo, disminuyendo los síntomas de ansiedad.</li>
-                <li><strong>Dieta equilibrada:</strong> Mantener una alimentación saludable y balanceada es fundamental para el bienestar mental. Evitar el exceso de cafeína, azúcares refinados y alimentos procesados puede contribuir a reducir la ansiedad.</li>
-                <li><strong>Sueño adecuado:</strong> Dormir las horas necesarias y tener un buen descanso es crucial para mantener el equilibrio emocional. La falta de sueño puede aumentar los niveles de ansiedad.</li>
-                <li><strong>Terapia psicológica:</strong> Consultar con un profesional de la salud mental puede ser de gran ayuda para aprender a manejar la ansiedad, identificar sus causas y trabajar en estrategias personalizadas de afrontamiento.</li>
-            </ul>
-        </section>
-    </main>
-    <footer>
-        <p>Todos los derechos reservados por UPEMOR © </p>
-    </footer>
+    <h1>Bienvenido, <?php echo $nombrePaciente; ?></h1>
+
+    <h2>Contesta el test siendo lo mas sincero posible</h2>
+    <form action="Modelo/GestionPreguntas/procesar_test.php" method="POST">
+        <table class="table-black">
+            <thead>
+                <tr>
+                    <th>Pregunta</th>
+                    <th>Siempre (5)</th>
+                    <th>Casi siempre (4)</th>
+                    <th>A veces (3)</th>
+                    <th>Casi nunca (2)</th>
+                    <th>Nunca (1)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                
+                $sql = "SELECT pregunta, idPregunta from test inner join preguntas on test.idPreguntaTst = preguntas.idPregunta where $idPaciente = idPacienteTst and realizado = 0;";
+                $PreguntaResult = mysqli_query($conn, $sql);
+                while ($preg = mysqli_fetch_assoc($PreguntaResult)) {
+                    $idPregunta = $preg['idPregunta'];
+                ?>
+                    <tr>
+                        <td><?php echo $preg['pregunta']; ?></td>
+                        <td><input type="radio" name="respuesta_<?php echo $idPregunta; ?>" value="5"></td>
+                        <td><input type="radio" name="respuesta_<?php echo $idPregunta; ?>" value="4"></td>
+                        <td><input type="radio" name="respuesta_<?php echo $idPregunta; ?>" value="3"></td>
+                        <td><input type="radio" name="respuesta_<?php echo $idPregunta; ?>" value="2"></td>
+                        <td><input type="radio" name="respuesta_<?php echo $idPregunta; ?>" value="1"></td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+        <button type="submit">Enviar respuestas</button>
+    </form>
+
+    <p class="indice" style="text-align: right;">
+        <?php echo "Ingrese el valor según la pregunta."; ?>
+        
+    </p>
 </body>
+
+
+
 </html>
+
+<?php
+mysqli_close($conn);
+?>

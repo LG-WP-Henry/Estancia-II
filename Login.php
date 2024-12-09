@@ -6,8 +6,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio de Sesión</title>
-    <h1>Bienvenido a SADNA</h1>
-    
     <link rel="stylesheet" href="Vista/Estilos/styles.css">
 </head>
 

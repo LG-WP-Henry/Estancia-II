@@ -22,12 +22,15 @@ $cedulaPsicologo = $psicologo['id_usuario'];
 foreach ($actividades as $idActividad) {
     // Verificar si hay avances que coincidan y que no tengan observaciones ni actividades asignadas
     $sql_verificar = "SELECT * FROM avances WHERE IdPacienteAv = $idPaciente AND CedulaAv = '$cedulaPsicologo' AND (Actividad IS NULL OR Actividad = '') AND (Observaciones IS NULL OR Observaciones = '') LIMIT 1";
+    //$sql_verificar = "SELECT * FROM avances WHERE IdPacienteAv = $idPaciente AND CedulaAv = '$cedulaPsicologo' LIMIT 1";
     $result_verificar = mysqli_query($conn, $sql_verificar);
     
     if (mysqli_num_rows($result_verificar) > 0) {
+        
         // Actualizar el primer avance encontrado
         $avance = mysqli_fetch_assoc($result_verificar);
-        $sql_actualizar = "UPDATE avances SET Actividad = $idActividad WHERE IdAvances = "$avance['IdAvances'];
+        
+        $sql_actualizar = "UPDATE avances SET Actividad = $idActividad WHERE idAvances = " . $avance['idAvances'];
         $conn->query($sql_actualizar);
     } else {
         // Insertar un nuevo avance si no se encuentra ninguno que cumpla las condiciones

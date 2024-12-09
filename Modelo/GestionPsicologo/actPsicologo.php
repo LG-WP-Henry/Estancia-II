@@ -1,11 +1,33 @@
 <?php 
 include '../../Modelo/BD/bd.php';
 
-
-// Verificar si el formulario ha sido enviado.
-if (isset($_POST['actualizar'])) {
-    // Recuperar datos del formulario.
+if(isset($_GET['Cedula']) && !empty($_GET['Cedula'])){
     $cedula = $_GET['Cedula'];
+    $selectPsicologo = "SELECT * FROM psicologo WHERE Cedula=$cedula;";
+    $selectCredenciales = "SELECT usuario, contrasena FROM credenciales WHERE id_usuario=$cedula AND tipo_usuario='Psicólogo';";
+
+    $executePsicologo = mysqli_query($conn, $selectPsicologo);
+    $executeCredenciales = mysqli_query($conn, $selectCredenciales);
+
+    if(mysqli_num_rows($executePsicologo) && mysqli_num_rows($executeCredenciales)){
+        $rowPsicologo = mysqli_fetch_array($executePsicologo);
+        $rowCredenciales = mysqli_fetch_array($executeCredenciales);
+
+        $nombre = $rowPsicologo['Nombre'];
+        $aPaterno = $rowPsicologo['ApPaterno'];
+        $aMaterno = $rowPsicologo['ApMaterno'];
+        $sexo = $rowPsicologo['sexo'];
+        $telefono = $rowPsicologo['telefono'];
+        $direccion = $rowPsicologo['direccion'];
+        $fechaNac = $rowPsicologo['fechaNac'];
+        $usuario = $rowCredenciales['usuario'];
+        $contrasena = $rowCredenciales['contrasena'];
+    }
+} else {
+    echo "No existen registros";
+}
+
+if(isset($_POST['actualizar'])){
     $nombre = $_POST['nombre'];
     $aPaterno = $_POST['apPaterno'];
     $aMaterno = $_POST['apMaterno'];
@@ -16,28 +38,25 @@ if (isset($_POST['actualizar'])) {
     $usuario = $_POST['usuario'];
     $contrasena = $_POST['contrasena'];
 
-    // Actualizar los datos en la base de datos.
     $sqlPsicologo = "UPDATE psicologo SET 
-                        Nombre = '$nombre', 
-                        ApPaterno = '$aPaterno', 
-                        ApMaterno = '$aMaterno', 
-                        sexo = '$sexo', 
-                        telefono = '$telefono', 
-                        direccion = '$direccion', 
-                        fechaNac = '$fechaNac' 
-                    WHERE Cedula = $cedula;";
+                    Nombre = '$nombre', 
+                    ApPaterno = '$aPaterno', 
+                    ApMaterno = '$aMaterno', 
+                    sexo = '$sexo', 
+                    telefono = '$telefono', 
+                    direccion = '$direccion', 
+                    fechaNac = '$fechaNac' 
+                WHERE Cedula = $cedula;";
 
     $sqlCredenciales = "UPDATE credenciales SET 
-                            usuario = '$usuario', 
-                            contrasena = '$contrasena' 
-                        WHERE id_usuario = $cedula AND tipo_usuario = 'Psicólogo';";
+                        usuario = '$usuario', 
+                        contrasena = '$contrasena' 
+                    WHERE id_usuario = $cedula AND tipo_usuario = 'Psicólogo';";
 
-    if (mysqli_query($conn, $sqlPsicologo) && mysqli_query($conn, $sqlCredenciales)) {
-        echo "<script>alert('Psicólogo actualizado correctamente.');window.location.href='../../Vista/crudPsicologo/consultaPsicologo.php';</script>";
+    if(mysqli_query($conn, $sqlPsicologo) && mysqli_query($conn, $sqlCredenciales)){
+        echo "<script>alert('Psicologo actualizado correctamente');window.location.href='../../Vista/crudPsicologo/consultaPsicologo.php';</script>";
     } else {
-        echo "Error al actualizar los datos: " . mysqli_error($conn);
+        echo "Error al actualizar: " . mysqli_error($conn);
     }
 }
-
-mysqli_close($conn);
 ?>

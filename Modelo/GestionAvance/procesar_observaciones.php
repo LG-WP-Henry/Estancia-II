@@ -14,11 +14,6 @@ $psicologo = mysqli_fetch_assoc($result);
 $cedulaPsicologo = $psicologo['id_usuario'];
 
 
-$sql = "SELECT id_usuario FROM credenciales WHERE usuario = '$username';";
-$result = mysqli_query($conn, $sql);
-$psicologo = mysqli_fetch_assoc($result);
-$cedulaPsicologo = $psicologo['id_usuario'];
-
 // Actualizar las observaciones en la base de datos
 $sql = "UPDATE avances SET Observaciones = '$observaciones' WHERE IdPacienteAv = $idPaciente AND CedulaAv = '$cedulaPsicologo' AND (Observaciones IS NULL OR Observaciones = '') LIMIT 1";
 $conn->query($sql);

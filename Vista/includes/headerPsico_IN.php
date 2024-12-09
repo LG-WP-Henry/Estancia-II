@@ -74,13 +74,13 @@
         <div class="header-left">
             <a href="../../indexPsicologo.php">Inicio</a>
             <a href="../gestion_citas.php">Gestión de Citas</a>
-            <a href="../../SADNA_2/Vista/crudPaciente/consultaPacientes.php">Gestión de Pacientes</a>
-            <a href="../../SADNA_2/Vista/crudPreguntas/consultarpreguntas.php">Gestión de Preguntas</a>
-            <a href="../../SADNA_2/vista/crudPreguntas/crearCuestionario.php">Gestión de Test</a>
-            <a href="../../SADNA_2/vista/crudActividades/consultarActividades.php">Gestión de Actividades</a>
-            <a href="../../SADNA_2/vista/crudActividades/mostrar_actividades.php">asignacion de Actividades</a>
-            <a href="../../SADNA_2/vista/crudAvances/mostrar_avances.php">Seguimiento de Avances</a>
-            <a href="../../SADNA_2/vista/crudAvances/mostrar_detalles_avances.php">Mostrar de Avances</a>
+            <a href="../../vista/crudPaciente/consultaPacientes.php">Gestión de Pacientes</a>
+            <a href="../../vista/crudPreguntas/consultarpreguntas.php">Gestión de Preguntas</a>
+            <a href="../../vista/crudPreguntas/crearCuestionario.php">Gestión de Test</a>
+            <a href="../../vista/crudActividades/consultarActividades.php">Gestión de Actividades</a>
+            <a href="../../vista/crudActividades/mostrar_actividades.php">asignacion de Actividades</a>
+            <a href="../../vista/crudavances/mostrar_avances.php">Seguimiento de Avances</a>
+            <a href="../../vista/crudavances/mostrar_detalles_avances.php">Mostrar de Avances</a>
         </div>
         <div class="header-right dropdown">
             <a href="javascript:void(0)">Opciones</a>

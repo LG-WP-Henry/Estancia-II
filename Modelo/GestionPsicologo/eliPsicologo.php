@@ -1,8 +1,4 @@
-
-
 <?php 
-
-
 include '../BD/bd.php';
 
 

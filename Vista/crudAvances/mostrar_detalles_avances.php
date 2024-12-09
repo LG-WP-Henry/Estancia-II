@@ -6,7 +6,7 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'Psicólogo') {
 }
 
 include '../../Modelo/BD/bd.php';
-include '../../Vista/includes/headerPsico.php';
+include '../../Vista/includes/headerPsico_IN.php';
 
 $username = $_SESSION['username'];
 $sql = "SELECT id_usuario FROM credenciales WHERE usuario = '$username';";
@@ -26,7 +26,7 @@ if ($idPaciente) {
     //$cedulaPsicologo = $_SESSION['cedula'];
 
     // Obtener detalles de los avances del paciente
-    $sql_detalles = "SELECT Puntaje, Actividad, Observaciones FROM avances WHERE IdPacienteAv = $idPaciente AND CedulaAv = '$cedulaPsicologo'";
+    $sql_detalles = "SELECT Puntaje, actividades.Actividad, Observaciones FROM avances inner join actividades on avances.actividad = actividades.idActividades WHERE IdPacienteAv = $idPaciente AND CedulaAv = '$cedulaPsicologo'";
     $result_detalles = mysqli_query($conn, $sql_detalles);
     while ($detalle = mysqli_fetch_assoc($result_detalles)) {
         $detalles_avances[] = $detalle;
