@@ -23,7 +23,7 @@ $idPaciente = isset($_POST['idPaciente']) ? $_POST['idPaciente'] : null;
 $detalles_avances = [];
 if ($idPaciente) {
     // Obtener detalles de los avances del paciente
-    $sql_detalles = "SELECT Puntaje, actividades.Actividad, Observaciones 
+    $sql_detalles = "SELECT Puntaje, actividades.Actividad, Observaciones, comentariosPac 
                      FROM avances 
                      INNER JOIN actividades ON avances.Actividad = actividades.idActividades 
                      WHERE IdPacienteAv = $idPaciente AND CedulaAv = '$cedulaPsicologo'";
@@ -70,6 +70,7 @@ $no_avance = 1;
                         <th>Puntaje del test</th>
                         <th>Actividad asignada</th>
                         <th>Observaciones</th>
+                        <th>Comentarios de actividad</th> 
                     </tr>
                 </thead>
                 <tbody>
@@ -79,6 +80,7 @@ $no_avance = 1;
                             <td><?php echo $detalle['Puntaje']; ?></td>
                             <td><?php echo $detalle['Actividad']; ?></td>
                             <td><?php echo $detalle['Observaciones']; ?></td>
+                            <td><?php echo $detalle['comentariosPac']; ?></td>
                         </tr>
                     <?php } ?>
                 </tbody>

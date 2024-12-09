@@ -28,13 +28,13 @@ if ($idPaciente) {
     $result_avances = mysqli_query($conn, $sql_avances);
     $avances = mysqli_fetch_assoc($result_avances);
 
-    // Obtener actividades del paciente
-    $sql_actividades = "SELECT actividades.Actividad FROM avances 
+    // Obtener actividades del paciente junto con los comentarios
+    $sql_actividades = "SELECT actividades.Actividad, avances.comentariosPac FROM avances 
                         INNER JOIN actividades ON avances.Actividad = actividades.idActividades 
-                        WHERE IdPacienteAv = $idPaciente AND CedulaAv = '$cedulaPsicologo' AND (Observaciones IS NULL OR Observaciones = '')";
+                        WHERE IdPacienteAv = $idPaciente AND CedulaAv = '$cedulaPsicologo'";
     $result_actividades = mysqli_query($conn, $sql_actividades);
     while ($actividad = mysqli_fetch_assoc($result_actividades)) {
-        $actividades[] = $actividad['Actividad'];
+        $actividades[] = $actividad;
     }
 }
 ?>
@@ -91,18 +91,20 @@ if ($idPaciente) {
                 <thead class="thead-dark">
                     <tr>
                         <th>Actividad</th>
+                        <th>Comentario</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($actividades as $actividad) { ?>
                         <tr>
-                            <td><?php echo $actividad; ?></td>
+                            <td><?php echo $actividad['Actividad']; ?></td>
+                            <td><?php echo $actividad['comentariosPac'] ? $actividad['comentariosPac'] : 'Sin comentario'; ?></td>
                         </tr>
                     <?php } ?>
                 </tbody>
             </table>
         <?php } else if ($idPaciente) { ?>
-            <p class="text-warning">No se han encontrado actividades asignadas sin observaciones para este paciente.</p>
+            <p class="text-warning">No se han encontrado actividades asignadas para este paciente.</p>
         <?php } ?>
 
         <div class="d-flex justify-content-between">
@@ -120,7 +122,7 @@ if ($idPaciente) {
 
     <!-- Bootstrap JS, Popper.js, and jQuery -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJTYuOHqAyyHnO8MN4TEdgz1Duj8ST8f5T89B5FRz5eF1KpH" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6HJTYP/q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+rZ7pihAxTfWv4w8rP5JpGVPH/nx1tW1p4GRTiqsbtGZR03p" crossorigin="anonymous"></script>
 </body>
 </html>

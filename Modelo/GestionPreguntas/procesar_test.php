@@ -1,10 +1,11 @@
 <?php
+//Inicio de Sesion
 session_start();
 if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'Paciente') {
     header("Location: login.php");
     exit();
 }
-
+//Conexion a la base de datos
 include '../BD/bd.php';
 include '../../Vista/includes/headerPac.php';
 
@@ -38,7 +39,6 @@ foreach ($updates as $idPregunta) {
     $conn->query($sql);
 }
 
-//echo "El total de las respuestas es: " . $total;
 
 //Cedula del psicologo
 $sql = "SELECT CedulaAvTst FROM test WHERE idPacienteTst = $idPaciente LIMIT 1";
@@ -69,6 +69,6 @@ if (!$insertado) {
 }
 
 
-
+//conexion de la base de datos cerrada
 $conn->close();
 ?>
