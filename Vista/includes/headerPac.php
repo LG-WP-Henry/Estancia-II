@@ -14,7 +14,7 @@
 
         header {
             background-color: #00bcd4;
-            color: black;
+            color: white;
             padding: 15px;
             display: flex;
             justify-content: space-between;
@@ -26,12 +26,7 @@
             gap: 15px;
         }
 
-        .header-left a{
-            color: white;
-        }
-
-        .header-right  a{
-            color: white;
+        .header-right {
             position: relative;
             display: inline-block;
         }
@@ -77,8 +72,8 @@
 <body>
     <header>
         <div class="header-left">
-            <a href="Vista/crudActividades/mostrar_Actividades_Paciente.php">Actividades Recetadas</a>
-            <a href="Vista/crudPreguntas/Test.php">Cuestionarios Realizados</a>
+            <a href="actividades.php">Actividades Recetadas</a>
+            <a href="cuestionarios.php">Cuestionarios Realizados</a>
             <a href="Vista/crudCitas/consultaCitas.php">Mostrar Citas</a>
             <a href="Vista/crudCitas/agendar.php">Agendar Cita</a>
         </div>
@@ -86,7 +81,7 @@
             <a href="javascript:void(0)">Opciones de Usuario</a>
             <div class="dropdown-content">
                 <a href="cambiar_contrasena.php">Cambiar Contraseña</a>
-                <a href="Controlador/Logout.php">Cerrar Sesión</a>
+                <a href="../../Controlador/Logout.php">Cerrar Sesión</a>
             </div>
         </div>
     </header>

@@ -6,7 +6,7 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'Psicólogo') {
 }
 
 include '../../Modelo/BD/bd.php';
-include '../includes/headerregresar.php';
+include '../../Vista/includes/headerPsico.php';
 
 $preguntasSql = "SELECT * FROM preguntas";
 $preguntaResult = mysqli_query($conn, $preguntasSql);

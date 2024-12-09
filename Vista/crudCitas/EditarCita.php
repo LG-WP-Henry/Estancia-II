@@ -1,12 +1,15 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Cita</title>
+    <link rel="stylesheet" href="../../Vista/Estilos/StylesForAddCita.css">
+</head>
+<body>
+    <h2>Editar Cita</h2>
 
-<?php
+    <?php
     include '../../Modelo/BD/bd.php';
-    include '../includes/headerregresar.php';
-    session_start();
-    if (!isset($_SESSION['username'])) {
-        header("Location: ../../login.php");
-        exit();
-    }
 
     // Obtener la información de la cita
     $idCita = $_GET['idCita'];
@@ -26,20 +29,10 @@
     $sqlPsicologos = "SELECT Cedula, Nombre, ApPaterno FROM psicologo";
     $resultadoPsicologos = mysqli_query($conn, $sqlPsicologos);
 
+    $sqlPacientes = "SELECT idPaciente, Nombre, ApPaterno, ApMaterno from paciente";
+    $sqlresultadoPaciente = mysqli_query($conn, $sqlPacientes); 
+
     ?>
-
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Editar Cita</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../Estilos/stylesForAddPAc.css">
-</head>
-<body>
-    <h2>Editar Cita</h2>
-
-   
 
     <form method="post" action="../../Modelo/GestionCitas/actCitas.php?idCita=<?php echo $idCita; ?>" class="form">
         <label>Fecha y Hora:</label>

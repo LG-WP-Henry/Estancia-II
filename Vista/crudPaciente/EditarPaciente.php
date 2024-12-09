@@ -10,8 +10,7 @@
 
     <?php
     include '../../Modelo/BD/bd.php';
-    include '../includes/headerregresar.php';
-
+    
     $id = $_GET['idPaciente'];
 
     $sql = "SELECT * FROM paciente WHERE idPaciente = $id";

@@ -1,6 +1,13 @@
-<?php
-  include '../../Modelo/BD/bd.php';
-  include '../includes/headerregresar.php';
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agendar Cita</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <?php
+  require '../../Modelo/BD/bd.php';
 
   session_start();
   if (!isset($_SESSION['username'])) {
@@ -13,17 +20,6 @@
   $result = mysqli_query($conn, $sql);
   $paciente = mysqli_fetch_assoc($result);
   ?>
-
-
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Agendar Cita</title>
-  <!-- Bootstrap CSS -->
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-
   <style>
     body {
       background-color: #f0f8ff; /* Azul pastel claro */

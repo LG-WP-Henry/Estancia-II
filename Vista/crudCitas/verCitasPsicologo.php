@@ -1,42 +1,36 @@
-<?php
-    require '../../Modelo/BD/bd.php';
-    include '../includes/headerRegresar.php';
-    session_start();
-    if (!isset($_SESSION['username'])) {
-        header("Location: ../../login.php");
-        exit();
-    }
-
-    $username = $_SESSION['username'];
-    $sql = "SELECT id_usuario FROM credenciales WHERE usuario = '$username';";
-    $result = mysqli_query($conn, $sql);
-    $paciente = mysqli_fetch_assoc($result);
-    $cedulaPsicologo = $paciente['id_usuario'];
-    ?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión de Citas</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-
-    <script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestión de Citas</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <script>
     function confirmDelete(idCita) {
-        if (confirm("¿Estás seguro de que deseas eliminar esta cita?")) {
+      if (confirm("¿Estás seguro de que deseas eliminar esta cita?")) {
         window.location.href = "../../Modelo/GestionCitas/eliminarCita.php?idCita=" + idCita;
-        }
+      }
     }
-    </script>
-    
+  </script>
+  <?php
+  require '../../Modelo/BD/bd.php';
+  session_start();
+  if (!isset($_SESSION['username'])) {
+      header("Location: ../../login.php");
+      exit();
+  }
+
+  $username = $_SESSION['username'];
+  $sql = "SELECT id_usuario FROM credenciales WHERE usuario = '$username';";
+  $result = mysqli_query($conn, $sql);
+  $paciente = mysqli_fetch_assoc($result);
+  $cedulaPsicologo = $paciente['id_usuario'];
+  ?>
 </head>
 <body>
-    <div class="container mt-5">
+  <div class="container mt-5">
     <h2 class="text-center mb-4">Gestión de Citas</h2>
-    <div class="text-right mb-3">
-            <a href="agendarPsico.php" class="btn btn-success">Crear cita nueva</a>
-        </div>
+
     <table class="table table-hover table-bordered">
         <thead class="thead-dark">
             <tr>
@@ -51,9 +45,9 @@
         <tbody>
             <?php
             $citasSql = "SELECT citas.idCitas, citas.Fecha, paciente.Nombre, paciente.ApPaterno, paciente.ApMaterno 
-                        FROM citas 
-                        JOIN paciente ON citas.idPacienteCi = paciente.idPaciente 
-                        WHERE citas.CedulaCita = '$cedulaPsicologo' ORDER BY fecha DESC";
+                         FROM citas 
+                         JOIN paciente ON citas.idPacienteCi = paciente.idPaciente 
+                         WHERE citas.CedulaCita = '$cedulaPsicologo' ORDER BY fecha DESC";
             
             $citasResult = mysqli_query($conn, $citasSql);
             while ($cita = mysqli_fetch_assoc($citasResult)) {
@@ -69,17 +63,11 @@
             <?php } ?>
         </tbody>
     </table>
-    </div>
-    <script>
-    function confirmDelete(id) {
-        if (confirm("¿Estás seguro de que deseas eliminar este registro?")) {
-            window.location.href = "../../Modelo/GestionCitas/eliCita.php?idCitas=" + id;
-        }
-    }
-    </script>
+  </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
