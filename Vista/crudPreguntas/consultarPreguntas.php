@@ -1,20 +1,15 @@
 <?php
 session_start();
-if (!isset($_SESSION['username']) || $_SESSION['role'] == 'Paciente') {
+if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'Psicólogo') {
     header("Location: ../../login.php");
     exit();
 }
 
 include '../../Modelo/BD/bd.php';
-if(($_SESSION['role'] == 'Psicólogo')){
 include '../../Vista/includes/headerPsico.php';
-}
-if(($_SESSION['role'] == 'Administrador')){
-    include '../../Vista/includes/headerAdmin.php';
-    }
 
-$citasSql = "SELECT * FROM paciente";
-$citasResult = mysqli_query($conn, $citasSql);
+$preguntasSql = "SELECT * FROM preguntas";
+$preguntaResult = mysqli_query($conn, $preguntasSql);
 ?>
 
 <!DOCTYPE html>
@@ -32,37 +27,27 @@ $citasResult = mysqli_query($conn, $citasSql);
         <h1 class="text-center text-primary mb-4">Bienvenido, <?php echo $_SESSION['username']; ?></h1>
 
         <div class="text-right mb-3">
-            <a href="CrearPaciente.php" class="btn btn-success">Crear un paciente nuevo</a>
+            <a href="altaPregunta.php" class="btn btn-success">Dar de alta una pregunta</a>
         </div>
         
-        <h2 class="text-secondary">Lista de Pacientes</h2>
+        <h2 class="text-secondary">Preguntas</h2>
         <div class="table-responsive">
             <table class="table table-hover table-bordered">
                 <thead class="thead-dark">
                     <tr>
-                        <th>ID Paciente</th>
-                        <th>Nombre</th>
-                        <th>Apellidos</th>
-                        <th>Sexo</th>
-                        <th>Teléfono</th>
-                        <th>Dirección</th>
-                        <th>Fecha de Nacimiento</th>
-                        <th>Eliminar</th>
-                        <th>Actualizar</th>
+                        <th>ID Pregunta</th>
+                        <th>Pregunta</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
-                    <?php while ($cita = mysqli_fetch_assoc($citasResult)) { ?>
+                    <?php while ($pregunta = mysqli_fetch_assoc($preguntaResult)) { ?>
                         <tr>
-                            <td><?php echo $cita['idPaciente']; ?></td>
-                            <td><?php echo $cita['Nombre']; ?></td>
-                            <td><?php echo $cita['ApPaterno'] . " " . $cita['ApMaterno']; ?></td>
-                            <td><?php echo $cita['sexo']; ?></td>
-                            <td><?php echo $cita['telefono']; ?></td>
-                            <td><?php echo $cita['direccion']; ?></td>
-                            <td><?php echo $cita['fechaNac']; ?></td>
-                            <td><a href="./../../Modelo/GestionPacientes/eliPaciente.php?idPaciente=<?php echo $cita['idPaciente']; ?>" class="btn btn-danger btn-sm">Eliminar</a></td>
-                            <td><a href="EditarPaciente.php?idPaciente=<?php echo $cita['idPaciente']; ?>" class="btn btn-warning btn-sm">Actualizar</a></td>
+                            <td><?php echo $pregunta['idPregunta']; ?></td>
+                            <td><?php echo $pregunta['Pregunta']; ?></td>
+                            
+                            <td><a href="../../Modelo/GestionPreguntas/eliPregunta.php?idPregunta=<?php echo $pregunta['idPregunta']; ?>" class="btn btn-danger btn-sm">Eliminar</a></td>
+                            <td><a href="editarPregunta.php?idPregunta=<?php echo $pregunta['idPregunta']; ?>" class="btn btn-warning btn-sm">Actualizar</a></td>
                         </tr>
                     <?php } ?>
                 </tbody>
@@ -80,3 +65,4 @@ $citasResult = mysqli_query($conn, $citasSql);
 <?php
 mysqli_close($conn);
 ?>
+

@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'Psicólogo') {
+if (!isset($_SESSION['username']) || $_SESSION['role'] == 'Paciente') {
     header("Location: ../../login.php");
     exit();
 }

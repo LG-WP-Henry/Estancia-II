@@ -18,7 +18,6 @@ $cedulaPsicologo = $psicologo['id_usuario'];
 $citasSql = "SELECT *FROM citas WHERE CedulaCita = '$cedulaPsicologo'";
 $citasResult = mysqli_query($conn, $citasSql);
 ?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -27,13 +26,16 @@ $citasResult = mysqli_query($conn, $citasSql);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel del Psicólogo</title>
     <link rel="stylesheet" href="Vista/Estilos/stylesIP.css">
+    <!-- Vinculación de Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ775e6iw5rJ5gG1RjFj8D3yeqqb6x8EWGzJ" crossorigin="anonymous">
 </head>
 <body>
     <h1>Bienvenido, <?php echo $_SESSION['username']; ?></h1>
 
     <h2>Lista de Citas</h2>
-    <table class="table-hover">
-        <thead>
+    <!-- Aplicar las clases de Bootstrap para mejorar el estilo de la tabla -->
+    <table class="table table-hover table-bordered">
+        <thead class="thead-dark">
             <tr>
                 <th>ID Cita</th>
                 <th>Fecha</th>
@@ -57,15 +59,16 @@ $citasResult = mysqli_query($conn, $citasSql);
                     <td><?php echo date('d/m/Y H:i', strtotime($cita['Fecha'])); ?></td>
                     <td><?php echo $cita['Nombre']; ?></td>
                     <td><?php echo $cita['ApPaterno'] . " " . $cita['ApMaterno']; ?></td>
-                    <td><a href="delete_cita.php?id=<?php echo $cita['idCitas']; ?>">Eliminar</a></td>
-                    <td><a href="update_cita.php?id=<?php echo $cita['idCitas']; ?>">Actualizar</a></td>
+                    <td><a href="delete_cita.php?id=<?php echo $cita['idCitas']; ?>" class="btn btn-danger btn-sm">Eliminar</a></td>
+                    <td><a href="update_cita.php?id=<?php echo $cita['idCitas']; ?>" class="btn btn-primary btn-sm">Actualizar</a></td>
                 </tr>
             <?php } ?>
         </tbody>
-            </table>
-            <br>
-            <hr>
-            <br>
+    </table>
+
+    <br>
+    <hr>
+    <br>
 </body>
 </html>
 
