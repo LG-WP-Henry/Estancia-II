@@ -31,38 +31,55 @@ $nombrePaciente = $paciente2['nombre'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paciente</title>
     <link rel="stylesheet" href="Vista/Estilos/stylesPac.css">
+    
 </head>
+
 <body>
     <h1>Bienvenido, <?php echo $nombrePaciente; ?></h1>
 
     <h2>Contesta el test siendo lo mas sincero posible</h2>
-    <table class="table-black">
-        <thead>
-            <tr>
-                <th>Pregunta</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            $pregunta = "SELECT Pregunta FROM test JOIN preguntas ON test.idPreguntaTst = preguntas.idPregunta
-            WHERE test.idPacienteTst ='$idPaciente'";
-            
-            $PreguntaResult = mysqli_query($conn, $pregunta);
-            while ($preg = mysqli_fetch_assoc($PreguntaResult)) {
-            ?>
+    <form action="Modelo/GestionPreguntas/procesar_test.php" method="POST">
+        <table class="table-black">
+            <thead>
                 <tr>
-                    <td><?php echo $preg['preguntas.Pregunta']; ?></td>
+                    <th>Pregunta</th>
+                    <th>Siempre (5)</th>
+                    <th>Casi siempre (4)</th>
+                    <th>A veces (3)</th>
+                    <th>Casi nunca (2)</th>
+                    <th>Nunca (1)</th>
                 </tr>
-            <?php } ?>
-        </tbody>
-            </table>
+            </thead>
+            <tbody>
+                <?php
+                
+                $sql = "SELECT pregunta, idPregunta from test inner join preguntas on test.idPreguntaTst = preguntas.idPregunta where $idPaciente = idPacienteTst and realizado = 0;";
+                $PreguntaResult = mysqli_query($conn, $sql);
+                while ($preg = mysqli_fetch_assoc($PreguntaResult)) {
+                    $idPregunta = $preg['idPregunta'];
+                ?>
+                    <tr>
+                        <td><?php echo $preg['pregunta']; ?></td>
+                        <td><input type="radio" name="respuesta_<?php echo $idPregunta; ?>" value="5"></td>
+                        <td><input type="radio" name="respuesta_<?php echo $idPregunta; ?>" value="4"></td>
+                        <td><input type="radio" name="respuesta_<?php echo $idPregunta; ?>" value="3"></td>
+                        <td><input type="radio" name="respuesta_<?php echo $idPregunta; ?>" value="2"></td>
+                        <td><input type="radio" name="respuesta_<?php echo $idPregunta; ?>" value="1"></td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+        <button type="submit">Enviar respuestas</button>
+    </form>
 
-            <p class='indice' text-align: right>
-                <?php echo "Ingrese el valor segun la pegunta." ?>
-                //aqui van 10 filas para puntear del 1 al 5
-
-            </p>
+    <p class="indice" style="text-align: right;">
+        <?php echo "Ingrese el valor según la pregunta."; ?>
+        
+    </p>
 </body>
+
+
+
 </html>
 
 <?php

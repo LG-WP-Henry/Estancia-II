@@ -74,14 +74,14 @@
         <div class="header-left">
             <a href="actividades.php">Actividades Recetadas</a>
             <a href="cuestionarios.php">Cuestionarios Realizados</a>
-            <a href="Vista/crudCitas/consultaCitas.php">Mostrar Citas</a>
-            <a href="Vista/crudCitas/agendar.php">Agendar Cita</a>
+            <a href="citas.php">Mostrar Citas</a>
+            <a href="agendar_cita.php">Agendar Cita</a>
         </div>
         <div class="header-right dropdown">
             <a href="javascript:void(0)">Opciones de Usuario</a>
             <div class="dropdown-content">
                 <a href="cambiar_contrasena.php">Cambiar Contraseña</a>
-                <a href="../../Controlador/Logout.php">Cerrar Sesión</a>
+                <a href="Logout.php">Cerrar Sesión</a>
             </div>
         </div>
     </header>

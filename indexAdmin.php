@@ -8,6 +8,7 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'Administrador') {
 include 'Modelo/BD/bd.php';
 include 'Vista/includes/headerAdmin.php';
 
+// Consulta para obtener todos los psicólogos con todos los datos, usuario y contraseña
 $sql = "SELECT p.Cedula, p.Nombre, p.ApPaterno, p.ApMaterno, p.sexo, p.telefono, p.direccion, p.fechaNac, 
                 c.usuario, c.contrasena
         FROM psicologo AS p
@@ -64,7 +65,7 @@ $result = mysqli_query($conn, $sql);
                                 <a href="Vista/crudPsicologo/EditarPsicologo.php?cedula=<?php echo $row['Cedula']; ?>" class="btn btn-primary btn-sm">Editar</a>
                             </td>
                             <td>
-                                <a href="javascript:void(0);" onclick="confirmDelete(<?php echo $row['Cedula']; ?>)" class="btn btn-danger btn-sm">Eliminar</a>
+                                <a href="Modelo/GestionPsicologo/eliPsicologo.php?Cedula=<?php echo $row['Cedula']; ?>" class="btn btn-danger btn-sm">Eliminar</a>
                             </td>
                         </tr>
                     <?php } ?>
@@ -72,14 +73,6 @@ $result = mysqli_query($conn, $sql);
             </table>
         </div>
     </div>
-
-    <script>
-    function confirmDelete(id) {
-        if (confirm("¿Estás seguro de que deseas eliminar este registro?")) {
-            window.location.href = "Modelo/GestionPsicologo/eliPsicologo.php?Cedula=" + id;
-        }
-    }
-    </script>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
