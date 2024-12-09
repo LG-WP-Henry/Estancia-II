@@ -12,10 +12,13 @@
         <div class="container d-flex justify-content-between align-items-center">
             <!-- Enlace de Inicio -->
             <a href="../../Controlador/regreso.php" class="btn btn-light text-primary">
-                Inicio
+                Regresar
             </a>
 
-            <!-- Logo en el centro -->
+            <!-- Texto "SADNA" en el centro -->
+            <h1 class="text-white mx-3" style="font-size: 1.5rem;">SADNA</h1>
+
+            <!-- Logo a la derecha -->
             <div class="header-center">
                 <img src="../imagenes/logo.png" alt="Logo" class="img-fluid" style="max-height: 100px;">
             </div>

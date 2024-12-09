@@ -4,6 +4,7 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'Psicólogo') {
     header("Location: ../../login.php");
     exit();
 }
+include '../../Vista/includes/headerRegresar.php';
 ?>
 
 <!DOCTYPE html>

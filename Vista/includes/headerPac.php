@@ -85,7 +85,6 @@
         <div class="header-right dropdown">
             <a href="javascript:void(0)">Opciones de Usuario</a>
             <div class="dropdown-content">
-                <a href="cambiar_contrasena.php">Cambiar Contraseña</a>
                 <a href="Controlador/Logout.php">Cerrar Sesión</a>
             </div>
         </div>

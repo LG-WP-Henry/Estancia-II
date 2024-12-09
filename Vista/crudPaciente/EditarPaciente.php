@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <?php     include '../includes/headerregresar.php'; ?>
     <meta charset="UTF-8">
     <title>Editar Paciente</title>
     <link rel="stylesheet" href="../../Vista/Estilos/StylesForAddPAc.css">
@@ -10,7 +11,7 @@
 
     <?php
     include '../../Modelo/BD/bd.php';
-    include '../includes/headerregresar.php';
+
 
     $id = $_GET['idPaciente'];
 

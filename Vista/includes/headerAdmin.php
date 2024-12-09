@@ -20,7 +20,7 @@
                 <a href="Vista/crudPsicologo/consultaPsicologo.php" class="btn btn-link text-white">Gestión de Psicólogos</a>
                 <a href="Vista/crudAdministrador/consultaAdmin.php" class="btn btn-link text-white">Gestión de Administradores</a>
                 <a href="Vista/Reportes/Reportes.php" class="btn btn-link text-white">Reportes</a>
-                <a class="btn btn-link text-white" href="cambiar_contrasena.php">Cambiar Contraseña</a>
+                
                 <a class="btn btn-link text-white" href="Controlador/Logout.php">Cerrar Sesión</a>
             </div>
     </header>

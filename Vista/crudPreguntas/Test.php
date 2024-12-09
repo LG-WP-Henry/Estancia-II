@@ -51,11 +51,11 @@ $preguntaResult = mysqli_query($conn, $sqlPreguntas);
                     <thead class="table-primary text-center">
                         <tr>
                             <th>Pregunta</th>
-                            <th>Siempre (5)</th>
-                            <th>Casi siempre (4)</th>
-                            <th>A veces (3)</th>
-                            <th>Casi nunca (2)</th>
-                            <th>Nunca (1)</th>
+                            <th>Siempre</th>
+                            <th>Casi siempre</th>
+                            <th>A veces</th>
+                            <th>Casi nunca</th>
+                            <th>Nunca</th>
                         </tr>
                     </thead>
                     <tbody>

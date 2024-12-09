@@ -6,7 +6,7 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'Psicólogo') {
 }
 
 include '../../Modelo/BD/bd.php';
-include '../includes/headerPsico_INI.php';
+include '../../Vista/includes/headerRegresar.php';
 
 $actividadSql = "SELECT * FROM actividades";
 
