@@ -6,7 +6,7 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'Paciente') {
 }
 
 include 'Modelo/BD/bd.php';
-include 'Vista/includes/headerPsico.php';
+include 'Vista/includes/headerPac.php';
 
 $username = $_SESSION['username'];
 $sql = "SELECT id_usuario FROM credenciales WHERE usuario = '$username';";
@@ -44,7 +44,7 @@ $nombrePaciente = $paciente2['nombre'];
         </thead>
         <tbody>
             <?php
-            $pregunta = "SELECT preguntas.Pregunta FROM test JOIN preguntas ON test.idPreguntaTst = preguntas.idPregunta
+            $pregunta = "SELECT Pregunta FROM test JOIN preguntas ON test.idPreguntaTst = preguntas.idPregunta
             WHERE test.idPacienteTst ='$idPaciente'";
             
             $PreguntaResult = mysqli_query($conn, $pregunta);

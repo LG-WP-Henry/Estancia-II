@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal del Paciente</title>
+    <title>Panel del Psicólogo</title>
     <style>
         /* Estilos básicos para el header */
         body {
@@ -21,9 +21,20 @@
             align-items: center;
         }
 
+        .header-left a, .header-right a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            padding: 8px 12px;
+            border-radius: 4px;
+        }
+
+        .header-left a:hover, .header-right a:hover {
+            background-color: #008ba3;
+        }
+
         .header-left {
             display: flex;
-            gap: 15px;
         }
 
         .header-right {
@@ -56,32 +67,23 @@
         .dropdown:hover .dropdown-content {
             display: block;
         }
-
-        a {
-            color: white;
-            text-decoration: none;
-            padding: 8px 12px;
-        }
-
-        a:hover {
-            background-color: #008ba3;
-            border-radius: 4px;
-        }
     </style>
 </head>
 <body>
     <header>
         <div class="header-left">
-            <a href="actividades.php">Actividades Recetadas</a>
-            <a href="cuestionarios.php">Cuestionarios Realizados</a>
-            <a href="Vista/crudCitas/consultaCitas.php">Mostrar Citas</a>
-            <a href="Vista/crudCitas/agendar.php">Agendar Cita</a>
+            <a href="../../indexAdmin.php">Inicio</a>
+            <a href="gestion_citas.php">Gestión de Citas</a>
+            <a href="Vista/crudPaciente/consultaPacientes.php">Gestión de Pacientes</a>
+            <a href="gestion_preguntas.php">Gestión de Preguntas</a>
+            <a href="gestion_test.php">Gestión de Test</a>
+            <a href="Vista/crudPsicologo/consultaPsicologo.php">Gestión de Psicólogos</a>
         </div>
         <div class="header-right dropdown">
-            <a href="javascript:void(0)">Opciones de Usuario</a>
+            <a href="javascript:void(0)">Opciones</a>
             <div class="dropdown-content">
                 <a href="cambiar_contrasena.php">Cambiar Contraseña</a>
-                <a href="../../Controlador/Logout.php">Cerrar Sesión</a>
+                <a href="../../Controlador/logout.php">Cerrar Sesión</a>
             </div>
         </div>
     </header>

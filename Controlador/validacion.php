@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         switch ($role) {
             case 'Administrador':
-                header("Location: admin.php");
+                header("Location: ../indexAdmin.php");
                 break;
             case 'Psicólogo':
                 header("Location: ../indexPsicologo.php");
