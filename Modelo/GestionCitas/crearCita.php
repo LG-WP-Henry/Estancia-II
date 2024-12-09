@@ -1,4 +1,10 @@
 <?php
+session_start();
+if (!isset($_SESSION['username'])) {
+    header("Location: login.php");
+    exit();
+}
+
 require '../../Modelo/BD/bd.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -13,9 +19,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Ejecuta la consulta y verifica errores
     if ($stmt->execute()) {
-        echo "<script>alert('Cita agregada correctamente');window.location.href='../../indexPaciente.php';</script>";
+        echo "<script>alert('Cita agregada correctamente');window.location.href='../../Controlador/redireccion.php';</script>";
     } else {
-        echo "<script>alert('Cita agregada correctamente');window.location.href='../../indexPaciente.php';</script>";
+        echo "<script>alert('Cita agregada correctamente');window.location.href='../../Controlador/redireccion.php';</script>";
     }
 
     $stmt->close();

@@ -16,7 +16,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['username'] = $user;
         $_SESSION['role'] = $role;
 
-
         switch ($role) {
             case 'Administrador':
                 header("Location: ../indexAdmin.php");

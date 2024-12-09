@@ -8,6 +8,7 @@
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <?php
   require '../../Modelo/BD/bd.php';
+  include '../includes/headerregresar.php';
 
   session_start();
   if (!isset($_SESSION['username'])) {
@@ -69,7 +70,7 @@
 
     <!-- Tabla de citas vencidas -->
     <div>
-      <h4>Citas Vencidas</h4>
+      <h4>Citas Pasadas</h4>
       <?php if (mysqli_num_rows($resultVencidas) > 0): ?>
         <table class="table table-striped">
           <thead>
