@@ -6,10 +6,12 @@
     <link rel="stylesheet" href="../../Estilos/StylesForAddPAc.css">
 </head>
 <body>
+    <?php include '../../Vista/includes/headerPsico.php';?>
+    
     <h2>Editar Actividad</h2>
-
     <?php
     include '../../Modelo/BD/bd.php';
+    
     
     $id = $_GET['idActividades'];
 

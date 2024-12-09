@@ -6,7 +6,7 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'Psicólogo') {
 }
 
 include '../../Modelo/BD/bd.php';
-include '../../Vista/includes/headerPsico_IN.php';
+include '../includes/headerPsico_INI.php';
 
 $actividadSql = "SELECT * FROM actividades";
 
@@ -22,12 +22,20 @@ $execute = mysqli_query($conn, $actividadSql);
     <title>Panel del Psicólogo</title>
     <link rel="stylesheet" href="../Estilos/stylesIP.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script>
+        function confirmDeletion(event) {
+            if (!confirm("¿Seguro que vas a eliminar esta actividad?")) {
+                event.preventDefault();
+            }
+        }
+    </script>
 </head>
 <body class="bg-light">
     <div class="container my-5">
         <h1 class="text-center text-primary mb-4">Bienvenido, <?php echo $_SESSION['username']; ?></h1>
 
         <div class="text-right mb-3">
+            <a href="mostrar_Actividades.php" class="btn btn-success">Asignar actividad</a>
             <a href="altaActividad.php" class="btn btn-success">Agregar actividad</a>
         </div>
         
@@ -39,7 +47,7 @@ $execute = mysqli_query($conn, $actividadSql);
                         <th>ID Actividad</th>
                         <th>Actividad</th>
                         <th>Eliminar</th>
-                        <th>Actializar</th>
+                        <th>Actualizar</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -48,7 +56,7 @@ $execute = mysqli_query($conn, $actividadSql);
                             <td><?php echo $variableA['idActividades']; ?></td>
                             <td><?php echo $variableA['Actividad']; ?></td>
                             
-                            <td><a href="../../Modelo/GestionActividad/eliActividad.php?idActividades=<?php echo $variableA['idActividades']; ?>" class="btn btn-danger btn-sm">Eliminar</a></td>
+                            <td><a href="../../Modelo/GestionActividad/eliActividad.php?idActividades=<?php echo $variableA['idActividades']; ?>" class="btn btn-danger btn-sm" onclick="confirmDeletion(event)">Eliminar</a></td>
                             <td><a href="editarActividades.php?idActividades=<?php echo $variableA['idActividades']; ?>" class="btn btn-warning btn-sm">Actualizar</a></td>
                         </tr>
                     <?php } ?>

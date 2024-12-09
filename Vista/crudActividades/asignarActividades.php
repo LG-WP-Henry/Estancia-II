@@ -29,7 +29,7 @@ $result_pacientes = $conn->query($sql_pacientes);
 
 
 if ($result->num_rows > 0 && $result_pacientes->num_rows > 0) {
-    echo "<form action='../../modelo/GestionPreguntas/procesar_preguntas.php' method='post'>";
+    echo "<form action='../../Controlador/procesar_Actividades.php' method='post'>";
 
     // Cuadro desplegable para seleccionar el paciente
     echo "<label for='id_paciente'>Seleccionar Paciente:</label>";
@@ -54,8 +54,11 @@ if ($result->num_rows > 0 && $result_pacientes->num_rows > 0) {
     echo "<input type='submit' value='Enviar'>";
     echo "</form>";
 } else {
-    echo "No se encontraron preguntas o Pacientes para asignar.";
+    echo "<script>alert('No fue posible');window.location.href='../Vista/includes/indexPaciente.php';</script>";
 }
+
+//echo "<script>alert('Actividad asignada!');window.location.href='../Vista/includes/indexPaciente.php';</script>";
+
 
 $conn->close();
 ?>

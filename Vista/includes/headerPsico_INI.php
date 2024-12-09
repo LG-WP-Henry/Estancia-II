@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal del Paciente</title>
+    <title>Panel del Psicólogo</title>
     <style>
         /* Estilos básicos para el header */
         body {
@@ -14,24 +14,30 @@
 
         header {
             background-color: #00bcd4;
-            color: black;
+            color: white;
             padding: 15px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
+        .header-left a, .header-right a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            padding: 8px 12px;
+            border-radius: 4px;
+        }
+
+        .header-left a:hover, .header-right a:hover {
+            background-color: #008ba3;
+        }
+
         .header-left {
             display: flex;
-            gap: 15px;
         }
 
-        .header-left a{
-            color: white;
-        }
-
-        .header-right  a{
-            color: white;
+        .header-right {
             position: relative;
             display: inline-block;
         }
@@ -61,29 +67,20 @@
         .dropdown:hover .dropdown-content {
             display: block;
         }
-
-        a {
-            color: white;
-            text-decoration: none;
-            padding: 8px 12px;
-        }
-
-        a:hover {
-            background-color: #008ba3;
-            border-radius: 4px;
-        }
     </style>
 </head>
 <body>
     <header>
         <div class="header-left">
-            <a href="Vista/crudActividades/mostrar_Actividades_Paciente.php">Actividades Recetadas</a>
-            <a href="Vista/crudPreguntas/Test.php">Cuestionarios Realizados</a>
-            <a href="Vista/crudCitas/consultaCitas.php">Mostrar Citas</a>
-            <a href="Vista/crudCitas/agendar.php">Agendar Cita</a>
+            <a href="../crudCitas/verCitasPsicologo.php">Gestión de Citas</a>
+            <a href="../crudPaciente/consultaPacientes.php">Gestión de Pacientes</a>
+            <a href="../crudPreguntas/consultarpreguntas.php">Gestión de Preguntas</a>
+            <a href="../crudPreguntas/crearCuestionario.php">Gestión de Test</a>
+            <a href="../crudAvances/mostrar_avances.php">Gestión de Avances</a>
+            <a href="../crudActividades/consultarActividades.php">Gestión de Actividades</a>
         </div>
         <div class="header-right dropdown">
-            <a href="javascript:void(0)">Opciones de Usuario</a>
+            <a href="javascript:void(0)">Opciones</a>
             <div class="dropdown-content">
                 <a href="cambiar_contrasena.php">Cambiar Contraseña</a>
                 <a href="Controlador/Logout.php">Cerrar Sesión</a>

@@ -1,0 +1,22 @@
+
+        body {
+            background-color: #e7f5e9; /* Verde meta muy bajo */
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin-top: 30px;
+        }
+        h1, h2 {
+            text-align: center;
+            color: #155724; /* Verde oscuro */
+        }
+        .table-hover tbody tr:hover {
+            background-color: #effff3; /* Verde claro para hover */
+        }
+        .btn-custom {
+            background-color: #28a7a3;
+            color: white;
+        }
+        .btn-custom:hover {
+            background-color: #28a7a3;
+        }

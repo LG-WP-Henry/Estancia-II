@@ -22,9 +22,10 @@ if(isset($_POST['actualizar'])){
     $sql = "UPDATE actividades SET Actividad = '$pregunta' WHERE idActividades = $id;";
 
     if($conn->query($sql) === TRUE){
-        header("Location: ../../Vista/crudActividades/consultarActividades.php");
+        
+        echo "<script>alert('la actividad se actualizo correctamente');window.location.href='../../Vista/crudActividades/consultarActividades.php';</script>";
     } else {
-        echo "Error al actualizar: " . mysqli_error($conn);
+        echo "<script>alert('Error al actualizo');window.location.href='../../Vista/crudActividades/altaActividad.php';</script>";
     }
 }
 ?>

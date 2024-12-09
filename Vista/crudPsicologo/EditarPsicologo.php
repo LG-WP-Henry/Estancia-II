@@ -1,16 +1,7 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Editar Psicólogo</title>
-    <link rel="stylesheet" href="../../Vista/Estilos/StylesForAddPAc.css">
-</head>
-<body>
-    <h2>Editar Psicólogo</h2>
-
-    <?php
+<?php
     include '../../Modelo/BD/bd.php';
-    
+    include '../../Vista/includes/headerRegresar.php';
+
     $cedula = $_GET['cedula'];
 
     $sqlPsicologo = "SELECT * FROM psicologo WHERE Cedula = $cedula";
@@ -24,7 +15,21 @@
         $rowCredenciales = mysqli_fetch_assoc($resultadoCredenciales);
     ?>
     
+    <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Psicólogo</title>
+    <link rel="stylesheet" href="../../Vista/Estilos/StylesForAddPAc.css">
+</head>
+<body>
+    <h2>Editar Psicólogo</h2>
+    
     <form method="post" action="../../Modelo/GestionPsicologo/actPsicologo.php?Cedula=<?php echo $cedula; ?>" class="form">
+
+        <!-- Campo oculto para enviar la cédula sin mostrarla al usuario -->
+        <input type="hidden" name="Cedula" value="<?php echo $cedula; ?>">
+
         <label>Nombre:</label>
         <input type="text" name="nombre" value="<?php echo $rowPsicologo['Nombre']; ?>" required><br><br>
 
@@ -35,7 +40,11 @@
         <input type="text" name="apMaterno" value="<?php echo $rowPsicologo['ApMaterno']; ?>" required><br><br>
 
         <label>Sexo:</label>
-        <input type="text" name="sexo" value="<?php echo $rowPsicologo['sexo']; ?>" required><br><br>
+        <select id="sexo" name="sexo" class="dropdown" required>
+            <option value="<?php echo $rowPsicologo['sexo']; ?>" disabled selected><?php echo $rowPsicologo['sexo']; ?></option>
+            <option value="Masculino">Masculino</option>
+            <option value="Femenino">Femenino</option>
+        </select><br><br>
 
         <label>Teléfono:</label>
         <input type="text" name="telefono" value="<?php echo $rowPsicologo['telefono']; ?>" required><br><br>
