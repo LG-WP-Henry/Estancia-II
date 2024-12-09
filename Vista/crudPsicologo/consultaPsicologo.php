@@ -6,14 +6,14 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'Administrador') {
 }
 
 include '../../Modelo/BD/bd.php';
-include '../../Vista/includes/headerAdmin.php';
+include '../../Vista/includes/headerRegresar.php';
 
 // Consulta para obtener todos los psicólogos con todos los datos, usuario y contraseña
 $sql = "SELECT p.Cedula, p.Nombre, p.ApPaterno, p.ApMaterno, p.sexo, p.telefono, p.direccion, p.fechaNac, 
                 c.usuario, c.contrasena
         FROM psicologo AS p
         JOIN credenciales AS c ON p.Cedula = c.id_usuario
-        WHERE c.tipo_usuario = 'Psicólogo'";
+        WHERE c.tipo_usuario = 'Psicólogo';";
 $result = mysqli_query($conn, $sql);
 ?>
 

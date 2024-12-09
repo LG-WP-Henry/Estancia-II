@@ -6,12 +6,8 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] == 'Paciente') {
 }
 
 include '../../Modelo/BD/bd.php';
-if(($_SESSION['role'] == 'Psicólogo')){
-include '../../Vista/includes/headerPsico.php';
-}
-if(($_SESSION['role'] == 'Administrador')){
-    include '../../Vista/includes/headerAdmin.php';
-    }
+include '../includes/headerregresar.php';
+
 
 $citasSql = "SELECT * FROM paciente";
 $citasResult = mysqli_query($conn, $citasSql);

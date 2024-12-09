@@ -1,5 +1,9 @@
 <?php
-
+session_start();
+if (!isset($_SESSION['username'])) {
+    header("Location: login.php");
+    exit();
+}
 include '../BD/bd.php';
 
 if (isset($_GET['idCitas'])) {
