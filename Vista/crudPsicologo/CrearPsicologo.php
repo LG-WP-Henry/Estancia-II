@@ -10,13 +10,16 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'Psicólogo') {
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Registrar Paciente</title>
-    <link rel="stylesheet" href="../Estilos/stylesForAddPAc.css">
+    <title>Registrar Psicologo</title>
+    <link rel="stylesheet" href="../Vista/Estilos/stylesForAddPAc.css"> <!-- Ruta de tu archivo CSS -->
 </head>
 <body>
-    <h2>Registrar Nuevo Paciente</h2>
-<a href="consultaPacientes.php"></a>
-    <form method="post" action="../../Modelo/GestionPacientes/crearPaciente.php" class="form">
+    <h2>Registrar Nuevo Psicologo</h2>
+    <!-- Formulario con clases para aplicar los estilos -->
+    <form method="post" action="../Modelo/GestionPsicologo/crearPsicologo.php" class="form">
+        <label>Cedula:</label>
+        <input type="text" name="cedula" required><br><br>
+
         <label>Nombre:</label>
         <input type="text" name="nombre" required><br><br>
 
@@ -38,7 +41,7 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'Psicólogo') {
         <label>Fecha de Nacimiento:</label>
         <input type="date" name="fechaNac" required><br><br>
 
-        <input type="submit" value="Registrar Paciente">
+        <input type="submit" value="Registrar Psicologo">
     </form>
 </body>
 </html>

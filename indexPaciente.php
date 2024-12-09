@@ -6,7 +6,7 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'Paciente') {
 }
 
 include 'Modelo/BD/bd.php';
-include 'Vista/includes/headerPac.php';
+include 'Vista/includes/headerPsico.php';
 
 $username = $_SESSION['username'];
 $sql = "SELECT id_usuario FROM credenciales WHERE usuario = '$username';";

@@ -1,4 +1,3 @@
-/* Estilo general del formulario */
 body {
     background-color: #c7f9ff;
 }
@@ -59,7 +58,6 @@ h2 {
     background-color: #0056b3;
 }
 
-/* Espaciado entre elementos */
 .form br {
-    display: none; /* Opcional: Oculta los saltos de línea para un espaciado más uniforme */
+    display: none; 
 }

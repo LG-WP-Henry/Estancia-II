@@ -34,7 +34,7 @@ h2 {
 }
 
 .table a {
-    color: #dc3545; /* Color rojo para eliminar */
+    color: #000000; /* Color rojo para eliminar */
     text-decoration: none; /* Sin subrayado */
 }
 
@@ -99,7 +99,7 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    background-color: #ff9142;
+    background-color: #60f4ff;
     border-radius: 5px;
 }
 
