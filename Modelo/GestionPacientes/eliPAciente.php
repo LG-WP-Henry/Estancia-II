@@ -6,9 +6,7 @@ include '../BD/bd.php';
         $ID = $_GET['idPaciente'];
         $delete = "Delete from paciente where idPaciente=$ID;";
         $execute = mysqli_query($conn, $delete);
-        header("Location: ../../Vista/crudPaciente/consultaPacientes.php");
-    }else{
-        echo"No se pudo eliminar";
+        sleep(2);
         header("Location: ../../Vista/crudPaciente/consultaPacientes.php");
     }
 

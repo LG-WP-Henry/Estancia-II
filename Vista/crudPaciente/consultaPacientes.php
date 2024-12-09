@@ -1,17 +1,12 @@
 <?php
 session_start();
-if (!isset($_SESSION['username']) || $_SESSION['role'] == 'Paciente') {
+if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'Psicólogo') {
     header("Location: ../../login.php");
     exit();
 }
 
 include '../../Modelo/BD/bd.php';
-if(($_SESSION['role'] == 'Psicólogo')){
 include '../../Vista/includes/headerPsico.php';
-}
-if(($_SESSION['role'] == 'Administrador')){
-    include '../../Vista/includes/headerAdmin.php';
-    }
 
 $citasSql = "SELECT * FROM paciente";
 $citasResult = mysqli_query($conn, $citasSql);
@@ -61,7 +56,7 @@ $citasResult = mysqli_query($conn, $citasSql);
                             <td><?php echo $cita['telefono']; ?></td>
                             <td><?php echo $cita['direccion']; ?></td>
                             <td><?php echo $cita['fechaNac']; ?></td>
-                            <td><a href="javascript:void(0);" onclick="confirmDelete(<?php echo $cita['idPaciente']; ?>)" class="btn btn-danger btn-sm">Eliminar</a>                            </td>
+                            <td><a href="./../../Modelo/GestionPacientes/eliPaciente.php?idPaciente=<?php echo $cita['idPaciente']; ?>" class="btn btn-danger btn-sm">Eliminar</a></td>
                             <td><a href="EditarPaciente.php?idPaciente=<?php echo $cita['idPaciente']; ?>" class="btn btn-warning btn-sm">Actualizar</a></td>
                         </tr>
                     <?php } ?>
@@ -70,14 +65,6 @@ $citasResult = mysqli_query($conn, $citasSql);
         </div>
         <hr>
     </div>
-
-    <script>
-    function confirmDelete(id) {
-        if (confirm("¿Estás seguro de que deseas eliminar este registro?")) {
-            window.location.href = "../../Modelo/GestionPacientes/eliPAciente.php?idPaciente=" + id;
-        }
-    }
-    </script>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJTYuOHqAyyHnO8MN4TEdgz1Duj8ST8f5T89B5FRz5eF1KpH" crossorigin="anonymous"></script>

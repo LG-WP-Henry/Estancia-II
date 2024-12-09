@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Editar Paciente</title>
-    <link rel="stylesheet" href="../../Vista/Estilos/StylesForAddPAc.css">
+    <link rel="stylesheet" href="../../Estilos/StylesForAddPAc.css">
 </head>
 <body>
     <h2>Editar Paciente</h2>
@@ -20,7 +20,7 @@
         $row = mysqli_fetch_assoc($resultado);
     ?>
     
-    <form method="post" action="../../Modelo/GestionPacientes/actPaciente.php? idPaciente=<?php echo $id; ?>" class="form">
+    <form method="post" action="../../Modelo/GestionPacientes/actPaciente.php? idPaciente=<?php echo $id; ?>" class="table table-hover">
         <label>Nombre:</label>
         <input type="text" name="nombre" value="<?php echo $row['Nombre']; ?>" required><br><br>
 
@@ -31,11 +31,7 @@
         <input type="text" name="apMaterno" value="<?php echo $row['ApMaterno']; ?>" required><br><br>
 
         <label>Sexo:</label>
-        <select id="sexo" name="sexo" class="dropdown" required>
-                <option value="<?php echo $row['sexo']; ?>" disabled selected><?php echo $row['sexo']; ?></option>
-                <option value="Masculino">Masculino</option>
-                <option value="Femenino">Femenino</option>
-        </select>
+        <input type="text" name="sexo" value="<?php echo $row['sexo']; ?>" required><br><br>
 
         <label>Teléfono:</label>
         <input type="text" name="telefono" value="<?php echo $row['telefono']; ?>" required><br><br>

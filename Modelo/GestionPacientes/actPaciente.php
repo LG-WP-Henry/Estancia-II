@@ -40,8 +40,7 @@ if(isset($_POST['actualizar'])){
         WHERE idPaciente = $id;";
 
     if($conn->query($sql) === TRUE){
-        echo "<script>alert('Paciente actualizado');window.location.href='../../Vista/crudPaciente/consultaPacientes.php';</script>";
-        
+        header("Location: ../../Vista/crudPaciente/consultaPacientes.php");
     } else {
         echo "Error al actualizar: " . mysqli_error($conn);
     }

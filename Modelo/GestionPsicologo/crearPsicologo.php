@@ -1,5 +1,5 @@
 <?php
-include '../BD/bd.php';
+include '../Modelo/BD/bd.php';
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -17,9 +17,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($conn->query($sqlPsicologo) === TRUE) {
         $idPsicologo = $conn->$cedula;
-        echo "<script>alert('Psicologo agregado correctamente');window.location.href='../../Vista/crudPsicologo/consultaPsicologo.php';</script>";
+        echo "<script>alert('Psicologo agregado correctamente');window.location.href='../Vista/crearPsicologo.html';</script>";
     } else {
-        echo "<script>alert('Error al agregar Psicologo');window.location.href='../../Vista/indexAdmin.php';</script>";
+        echo "<script>alert('Error al agregar Psicologo');window.location.href='../Vista/crearPsicologo.html';</script>";
     }
 }
 

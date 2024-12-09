@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['username']) || $_SESSION['role'] == 'Paciente') {
+if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'Psicólogo') {
     header("Location: ../../login.php");
     exit();
 }
@@ -27,11 +27,7 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] == 'Paciente') {
         <input type="text" name="apMaterno" required><br><br>
 
         <label>Sexo:</label>
-        <select id="sexo" name="sexo" class="dropdown" required>
-                <option value="" disabled selected>Sexo</option>
-                <option value="Masculino">Masculino</option>
-                <option value="Femenino">Femenino</option>
-        </select>
+        <input type="text" name="sexo" required><br><br>
 
         <label>Teléfono:</label>
         <input type="text" name="telefono" required><br><br>

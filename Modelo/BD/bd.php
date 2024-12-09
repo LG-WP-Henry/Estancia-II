@@ -4,6 +4,6 @@ $conn= mysqli_connect(
     'localhost', 
     'root' , 
     '',
-    'Estanciaii'
+    'Estancia'
 );
 ?>
