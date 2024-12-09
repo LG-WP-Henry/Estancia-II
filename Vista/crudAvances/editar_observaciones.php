@@ -6,7 +6,7 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'Psicólogo') {
 }
 
 include '../../Modelo/BD/bd.php';
-include '../../Vista/includes/headerPsico.php';
+include '../includes/headerRegresar.php';
 
 // Obtener el ID del paciente
 $idPaciente = $_POST['idPaciente'];

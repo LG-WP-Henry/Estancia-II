@@ -44,21 +44,93 @@ class ReportesController {
     }
 
     private function crearPDF($titulo, $datos) {
-        $dompdf = new Dompdf();
-        $html = "<h1>{$titulo}</h1>";
-        $html .= "<table border='1' style='width: 100%; border-collapse: collapse;'>";
-        foreach ($datos as $fila) {
-            $html .= "<tr>";
-            foreach ($fila as $valor) {
-                $html .= "<td style='padding: 8px; text-align: center;'>{$valor}</td>";
-            }
-            $html .= "</tr>";
+        if (empty($datos)) {
+            die("No hay datos disponibles para generar el reporte.");
         }
-        $html .= "</table>";
 
+        $dompdf = new Dompdf();
+
+        // Crear el contenido HTML con el formato deseado
+        $html = "
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    header {
+        text-align: center;
+        padding: 10px;
+        background-color: #f0f4f8;
+        border-bottom: 2px solid #0277bd;
+    }
+    header img {
+        width: 70px;
+        vertical-align: middle;
+        margin-right: 15px;
+    }
+    header h1 {
+        display: inline-block;
+        font-size: 20px;
+        margin: 0;
+        color: #0277bd;
+        vertical-align: middle;
+    }
+    h2 {
+        text-align: center;
+        margin-top: 20px;
+        color: #424242;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+    table, th, td {
+        border: 1px solid #ddd;
+    }
+    th {
+        background-color: #e3f2fd;
+        color: #0277bd;
+        padding: 10px;
+        text-align: center;
+    }
+    td {
+        padding: 8px;
+        text-align: center;
+    }
+</style>
+<header>
+    <img src='http://localhost/EstanciaII.4/Vista/imagenes/logo.png' alt='Logo'>
+    <h1>SADNA (Sistema de Apoyo para la Detección de Ansiedad)</h1>
+</header>
+<h2>{$titulo}</h2>
+<table>";
+
+// Crear encabezado de la tabla
+$html .= "<thead><tr>";
+foreach (array_keys($datos[0]) as $key) {
+    $html .= "<th>" . htmlspecialchars($key) . "</th>";
+}
+$html .= "</tr></thead><tbody>";
+
+// Crear filas de la tabla
+foreach ($datos as $fila) {
+    $html .= "<tr>";
+    foreach ($fila as $valor) {
+        $html .= "<td>" . htmlspecialchars($valor) . "</td>";
+    }
+    $html .= "</tr>";
+}
+$html .= "</tbody></table>";
+
+
+        // Configurar y renderizar el PDF
         $dompdf->loadHtml($html);
         $dompdf->setPaper('A4', 'portrait');
         $dompdf->render();
+
+        // Descargar el PDF
         $dompdf->stream("reporte.pdf", ["Attachment" => true]);
     }
 }

@@ -6,8 +6,7 @@ if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'Psicólogo') {
 }
 
 include '../../Modelo/BD/bd.php';
-include '../../Vista/includes/headerRegresar.php';
-
+include '../includes/headerRegresar.php';
 $username = $_SESSION['username'];
 $sql = "SELECT id_usuario FROM credenciales WHERE usuario = '$username';";
 $result = mysqli_query($conn, $sql);
