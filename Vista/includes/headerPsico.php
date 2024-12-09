@@ -73,7 +73,7 @@
     <header>
         <div class="header-left">
             <a href="../../indexPsicologo.php">Inicio</a>
-            <a href="gestion_citas.php">Gestión de Citas</a>
+            <a href="Vista/crudCitas/verCitasPsicologo.php">Gestión de Citas</a>
             <a href="Vista/crudPaciente/consultaPacientes.php">Gestión de Pacientes</a>
             <a href="Vista/crudPreguntas/consultarpreguntas.php">Gestión de Preguntas</a>
             <a href="gestion_test.php">Gestión de Test</a>
@@ -83,7 +83,7 @@
             <a href="javascript:void(0)">Opciones</a>
             <div class="dropdown-content">
                 <a href="cambiar_contrasena.php">Cambiar Contraseña</a>
-                <a href="logout.php">Cerrar Sesión</a>
+                <a href="../../Controlador/logout.php">Cerrar Sesión</a>
             </div>
         </div>
     </header>

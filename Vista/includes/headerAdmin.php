@@ -83,7 +83,7 @@
             <a href="javascript:void(0)">Opciones</a>
             <div class="dropdown-content">
                 <a href="cambiar_contrasena.php">Cambiar Contraseña</a>
-                <a href="logout.php">Cerrar Sesión</a>
+                <a href="../../Controlador/logout.php">Cerrar Sesión</a>
             </div>
         </div>
     </header>

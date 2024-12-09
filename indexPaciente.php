@@ -44,7 +44,7 @@ $nombrePaciente = $paciente2['nombre'];
         </thead>
         <tbody>
             <?php
-            $pregunta = "SELECT preguntas.Pregunta FROM test JOIN preguntas ON test.idPreguntaTst = preguntas.idPregunta
+            $pregunta = "SELECT Pregunta FROM test JOIN preguntas ON test.idPreguntaTst = preguntas.idPregunta
             WHERE test.idPacienteTst ='$idPaciente'";
             
             $PreguntaResult = mysqli_query($conn, $pregunta);

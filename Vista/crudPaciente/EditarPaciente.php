@@ -31,7 +31,11 @@
         <input type="text" name="apMaterno" value="<?php echo $row['ApMaterno']; ?>" required><br><br>
 
         <label>Sexo:</label>
-        <input type="text" name="sexo" value="<?php echo $row['sexo']; ?>" required><br><br>
+        <select id="sexo" name="sexo" class="dropdown" required>
+                <option value="<?php echo $row['sexo']; ?>" disabled selected><?php echo $row['sexo']; ?></option>
+                <option value="Masculino">Masculino</option>
+                <option value="Femenino">Femenino</option>
+        </select>
 
         <label>Teléfono:</label>
         <input type="text" name="telefono" value="<?php echo $row['telefono']; ?>" required><br><br>
