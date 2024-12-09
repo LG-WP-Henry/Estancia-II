@@ -77,6 +77,7 @@
             <a href="../../SADNA_2/Vista/crudPaciente/consultaPacientes.php">Gestión de Pacientes</a>
             <a href="../../SADNA_2/Vista/crudPreguntas/consultarpreguntas.php">Gestión de Preguntas</a>
             <a href="../../SADNA_2/vista/crudPreguntas/crearCuestionario.php">Gestión de Test</a>
+            <a href="gestion_avances.php">Gestión de Actividades</a>
             <a href="gestion_avances.php">Gestión de Avances</a>
         </div>
         <div class="header-right dropdown">

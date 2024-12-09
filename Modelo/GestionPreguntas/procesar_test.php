@@ -38,7 +38,37 @@ foreach ($updates as $idPregunta) {
     $conn->query($sql);
 }
 
-echo "El total de las respuestas es: " . $total;
+//echo "El total de las respuestas es: " . $total;
+
+//Cedula del psicologo
+$sql = "SELECT CedulaAvTst FROM test WHERE idPacienteTst = $idPaciente LIMIT 1";
+$results = mysqli_query($conn, $sql); 
+$cedulaPsicologo = mysqli_fetch_assoc($results)['CedulaAvTst'];
+
+
+//verificar entradas del paciente en tabla avances
+$sql = "SELECT * FROM avances WHERE IdPacienteAv = $idPaciente";
+$resultss = mysqli_query($conn, $sql);
+
+$insertado = false;
+
+if (mysqli_num_rows($resultss) > 0) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        if (is_null($row['Puntaje'])) {
+            $sql = "UPDATE avances SET Puntaje = $total WHERE IdAvance = " . $row['IdAvance'];
+            $conn->query($sql);
+            $insertado = true;
+            break;
+        }
+    }
+}
+
+if (!$insertado) {
+    $sql = "INSERT INTO avances (IdPacienteAv, CedulaAv, Puntaje) VALUES ($idPaciente, '$cedulaPsicologo', $total)";
+    $conn->query($sql);
+}
+
+
 
 $conn->close();
 ?>

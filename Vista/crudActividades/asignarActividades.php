@@ -59,8 +59,3 @@ if ($result->num_rows > 0 && $result_pacientes->num_rows > 0) {
 
 $conn->close();
 ?>
-
-
-
-
-
